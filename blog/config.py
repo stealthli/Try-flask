@@ -1,5 +1,5 @@
 #configuration
-DATABASE = '/tmp/blog.db'
+DATABASE = 'blog.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
