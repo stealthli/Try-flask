@@ -48,8 +48,18 @@ def add_entry():
 	flash('New entry was  successfully posted')
 	return redirect(url_for('show_entries'))
 
+#delete entries
+@app.route('/delete', methods = ['POST'])
+def delete_entry():
+	if not session.get('logged_in'):
+		abort(401)
+	g.db.execute('delete from entries where title = ? and text = ?',[request.form['title'], request.form['text']])
+	g.db.commit()
+	flash('Entry was successfully deleted')
+	return redirect(url_for('show_entries'))
+
 #Login and function
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/login', methods = ['GET','POST'])
 def login():
 	error = None
 	if request.method == 'POST':
